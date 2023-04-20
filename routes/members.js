@@ -1,21 +1,22 @@
 const express = require("express");
 const router = express.Router();
 
-const books = require("../util/data");
+const members = require("../util/memberData");
+const points = require("../util/pointsData")
 
 router.get("/", function (req, res) {
-	res.status(200).json(books);
+	res.status(200).json(members);
 });
 
 router.get("/:id", function (req, res) {
-	let book = books.find(function (item) {
+	let member = points.find(function (item) {
 		return item.id == req.params.id;
 	});
 
-	book ? res.status(200).json(book) : res.sendStatus(404);
+	member ? res.status(200).json(member) : res.sendStatus(404);
 });
 
-router.post("/", function (req, res) {
+router.post("/puntuacion/:id", function (req, res) {
 	const { title, author, finished } = req.body;
 
 	let book = {
@@ -30,7 +31,7 @@ router.post("/", function (req, res) {
 
 	res.status(201).json(book);
 });
-
+/*
 router.put("/:id", function (req, res) {
 	let book = books.find(function (item) {
 		return item.id == req.params.id;
@@ -68,5 +69,5 @@ router.delete("/:id", function (req, res) {
 
 	res.sendStatus(204);
 });
-
+*/
 module.exports = router;

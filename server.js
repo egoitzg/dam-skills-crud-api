@@ -9,7 +9,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use("/books", require("./routes/books"));
+app.use("/participantes", require("./routes/members"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
