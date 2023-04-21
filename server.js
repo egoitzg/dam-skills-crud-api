@@ -10,6 +10,7 @@ app.use(
 app.use(bodyParser.json());
 
 app.use("/participantes", require("./routes/members"));
+app.use("/comentarios", require("./routes/comments"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);

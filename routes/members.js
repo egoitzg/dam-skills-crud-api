@@ -13,7 +13,7 @@ router.get("/:id", function (req, res) {
 		return item.id == req.params.id;
 	});
 
-	member ? res.status(200).json(member) : res.sendStatus(404);
+	member ? res.status(200).json(member) : res.status(404).json({status: 404,msg:'No member found with provided id.'});
 });
 
 router.post("/puntuacion/:id", function (req, res) {
