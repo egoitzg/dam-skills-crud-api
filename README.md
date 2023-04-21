@@ -10,12 +10,10 @@ npm start
 ## Avaiable endpoints to use
 In this API we have the following endpoints to work with:
 
-### TODO
-* /books
+* /participantes
 ```
-GET / -> Collection of all books
-GET /:id -> Book with the id param
-POST / -> Save a book from JSON in body
-PUT / -> Modify a book from JSON in body
-DELETE / -> Delete a book
+GET / -> Get the colection of members with their personal information.
+GET /:id -> Get the data of the member with the given id. This information includes an array of points.
+POST /:id -> Save a new point and category for the member with the given id. The information to save has to be in the body inside a JSON with "categoria" and "puntuacion" attributes.
+
 ```

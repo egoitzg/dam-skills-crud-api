@@ -17,57 +17,36 @@ router.get("/:id", function (req, res) {
 });
 
 router.post("/puntuacion/:id", function (req, res) {
-	const { title, author, finished } = req.body;
+	const { categoria, puntuacion } = req.body;
 
-	let book = {
-		id: books.length + 1,
-		title: title,
-		author: author,
-		finished: finished !== undefined ? finished : false,
-		createdAt: new Date(),
-	};
+	if(categoria === undefined || puntuacion === undefined){
+		res.status(404).json({status: 404,msg:'Error sending category or points parameters.'});
+		return;
+	}
 
-	books.push(book);
-
-	res.status(201).json(book);
-});
-/*
-router.put("/:id", function (req, res) {
-	let book = books.find(function (item) {
+	let member = points.find(function (item) {
 		return item.id == req.params.id;
 	});
 
-	if (book) {
-		const { title, author, finished } = req.body;
-
-		let updated = {
-			id: book.id,
-			title: title !== undefined ? title : book.title,
-			author: author !== undefined ? author : book.author,
-			finished: finished !== undefined ? finished : book.finished,
-			createdAt: book.createdAt,
-		};
-
-		books.splice(books.indexOf(book), 1, updated);
-
-		res.sendStatus(204);
-	} else {
-		res.sendStatus(404);
-	}
-});
-
-router.delete("/:id", function (req, res) {
-	let book = books.find(function (item) {
-		return item.id == req.params.id;
-	});
-
-	if (book) {
-		books.splice(books.indexOf(book), 1);
-	} else {
-		return res.sendStatus(404);
+	if(member === undefined){
+		res.status(404).json({status: 404,msg:'No member found with provided id.'});
+		return;
 	}
 
-	res.sendStatus(204);
+	let pointId = 0;
+	if(member.puntuaciones.length !=0){
+		pointId = member.puntuaciones[member.puntuaciones.length-1].id + 1;
+	}
+	
+	let pointsObj = {
+		id: pointId,
+		categoria: categoria,
+		puntuacion: puntuacion
+	}
+
+	member.puntuaciones.push(pointsObj);
+
+	res.status(201).json(member);
 });
-*/
+
 module.exports = router;
