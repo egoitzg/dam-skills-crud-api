@@ -20,7 +20,7 @@ router.post("/puntuacion/:id", function (req, res) {
 	const { categoria, puntuacion } = req.body;
 
 	if(categoria === undefined || puntuacion === undefined){
-		res.status(404).json({status: 404,msg:'Error sending category or points parameters.'});
+		res.status(401).json({status: 404,msg:'Error sending category or points parameters.'});
 		return;
 	}
 

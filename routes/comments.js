@@ -19,7 +19,7 @@ router.post("/:id", function (req, res) {
 	const { comentario } = req.body;
 
 	if(comentario === undefined){
-		res.status(404).json({status: 404,msg:'Error sending comments text'});
+		res.status(401).json({status: 404,msg:'Error sending comments text'});
 		return;
 	}
 

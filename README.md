@@ -17,3 +17,10 @@ GET /:id -> Get the data of the member with the given id. This information inclu
 POST /:id -> Save a new point and category for the member with the given id. The information to save has to be in the body inside a JSON with "categoria" and "puntuacion" attributes.
 
 ```
+
+* /comentarios
+```
+GET / -> Get the colection of members with their comments
+GET /:id -> Get the data of the member with the given id. This information includes an array of comments.
+POST /:id -> Save a new comment for the member with the given id. The information to save has to be in the body inside a JSON with "comentario" attribute.
+```
